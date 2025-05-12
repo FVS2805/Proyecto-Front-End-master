@@ -19,6 +19,7 @@ document.getElementById("studentForm").addEventListener("submit",function(e){
     
     //console.log(students)
     addStudentToTable(student)
+    calculateAverage();
     this.reset()
 
 
@@ -34,5 +35,12 @@ document.getElementById("studentForm").addEventListener("submit",function(e){
         }
 
         function calculateAverage(){
-            
+            if (students.length === 0) {
+                averageDiv.textContent = "Average Grade: N/A";
+                return;
+            }
+
+            const total=students.reduce((sum,student)=>sum+student.grade,0);
+            const prom=total/students.length;
+            averageDiv.textContent="Promedio General del Curso: "+prom.toFixed(2);
         }
